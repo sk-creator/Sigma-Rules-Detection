@@ -1,0 +1,17 @@
+title: PsExec Execution Detection
+id: lateral-psexec-detect-001
+description: Detects execution of PsExec which may indicate lateral movement
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4688
+    NewProcessName|contains: psexec
+  condition: selection
+falsepositives:
+  - Admin use of PsExec
+level: medium
+tags:
+  - attack.lateral_movement
+  - attack.t1569.002

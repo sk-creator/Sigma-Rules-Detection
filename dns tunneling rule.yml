@@ -1,0 +1,15 @@
+title: Possible DNS Tunneling
+id: dns-tunneling-001
+description: Detects unusually long DNS queries that may indicate tunneling activity
+logsource:
+  category: dns
+detection:
+  selection:
+    QueryLength|gt: 100
+  condition: selection
+falsepositives:
+  - Legitimate large DNS queries
+level: medium
+tags:
+  - attack.command_and_control
+  - attack.t1071.004
